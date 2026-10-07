@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#07111f">
+<title>TOP GUN MAVERICKS | NCC Attendance & Tasks</title>
+<style>
+:root{--bg:#07111f;--panel:#0d1b2a;--panel2:#10243a;--line:#23415c;--text:#eef6ff;--muted:#9db1c5;--cyan:#28d7ff;--green:#49e08b;--amber:#ffc857;--red:#ff647c;--blue:#5ea7ff;--shadow:0 18px 50px #0007}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 15% 0,#17314b 0,transparent 34%),linear-gradient(180deg,#07111f,#050b13);color:var(--text);font:15px/1.5 Inter,system-ui,Segoe UI,Arial,sans-serif;min-height:100vh}
+button,input,select,textarea{font:inherit}button{cursor:pointer}.wrap{max-width:1200px;margin:auto;padding:18px}.top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 0 22px}.brand{font-weight:900;letter-spacing:.12em}.brand small{display:block;color:var(--muted);letter-spacing:.08em;font-weight:600}.badge{padding:6px 10px;border:1px solid var(--line);border-radius:999px;color:var(--cyan);font-size:12px}.hero{padding:36px 0 24px}.eyebrow{color:var(--cyan);font-weight:800;letter-spacing:.16em;text-transform:uppercase}.hero h1{font-size:clamp(30px,6vw,64px);line-height:1;margin:12px 0}.hero p{max-width:650px;color:var(--muted);font-size:17px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}.card{background:linear-gradient(145deg,#0d1b2aee,#091522ee);border:1px solid var(--line);border-radius:20px;padding:20px;box-shadow:var(--shadow)}.card h2,.card h3{margin-top:0}.choice{min-height:170px;display:flex;flex-direction:column;justify-content:space-between}.btn{border:1px solid var(--line);background:#12283c;color:var(--text);padding:11px 15px;border-radius:12px;font-weight:800;transition:opacity .15s,transform .15s}.btn:disabled,.btn.busy{opacity:.55;cursor:wait;transform:none!important}.profile{margin:8px 0 22px}.event-date{font-size:18px;font-weight:900;letter-spacing:.01em}.event-time{font-size:17px;font-weight:800;color:var(--cyan)}.deadline-label{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:800}.event-meta{display:grid;gap:8px;margin:16px 0}.event-meta-box{background:#081827;border:1px solid #1d3a52;border-radius:14px;padding:10px 12px}.profile h1{margin:6px 0;font-size:clamp(26px,5vw,42px)}.profile .rank{color:var(--cyan);font-weight:900}.event-actions{display:flex;gap:8px;flex-wrap:wrap}.event-actions .btn{flex:1 1 150px}.pending{background:#3b3212;color:var(--amber)}.btn:hover{border-color:var(--cyan);transform:translateY(-1px)}.primary{background:linear-gradient(135deg,#1687a9,#1556a1);border-color:#48dfff}.danger{background:#351827;border-color:#6e2d3e}.success{background:#113427;border-color:#276c4b}.ghost{background:transparent}.hidden{display:none!important}.section{margin:22px 0}.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.field{display:flex;flex-direction:column;gap:6px;margin:10px 0}.field label{font-weight:700;color:#c9d8e7}.field input,.field select,.field textarea{width:100%;background:#07131f;border:1px solid var(--line);color:var(--text);border-radius:10px;padding:10px}.field textarea{min-height:90px;resize:vertical}.tablewrap{overflow:auto;border:1px solid var(--line);border-radius:14px}.table{width:100%;border-collapse:collapse;min-width:720px}.table th,.table td{padding:10px;border-bottom:1px solid #1c344a;text-align:left}.table th{color:#b7cbe0;background:#0b1b2a}.status{display:inline-flex;padding:4px 8px;border-radius:999px;font-size:12px;font-weight:900}.coming{background:#0d3925;color:var(--green)}.notcoming{background:#3c1721;color:#ff9cab}.noresponse{background:#27313c;color:#c8d0d8}.notice{padding:12px 14px;border-radius:12px;background:#0b1b2a;border:1px solid var(--line);color:var(--muted)}.countdown{font-variant-numeric:tabular-nums;font-size:22px;font-weight:900;color:var(--cyan)}.modal{position:fixed;inset:0;background:#000a;display:grid;place-items:center;padding:16px;z-index:50}.modalbox{max-width:720px;width:100%;max-height:90vh;overflow:auto;background:#0a1725;border:1px solid var(--line);border-radius:20px;padding:20px}.toast{position:fixed;right:16px;bottom:16px;background:#0e2234;border:1px solid var(--line);padding:12px 15px;border-radius:12px;box-shadow:var(--shadow);z-index:80}.tabs{display:flex;gap:8px;overflow:auto;padding-bottom:8px}.tabs button.active{border-color:var(--cyan);color:var(--cyan)}.muted{color:var(--muted)}.stat{font-size:30px;font-weight:900}.empty{text-align:center;padding:30px;color:var(--muted)}.small{font-size:12px}.split{display:grid;grid-template-columns:1fr 1fr;gap:16px}@media(max-width:700px){.split{grid-template-columns:1fr}.top{align-items:flex-start}.hero{padding-top:22px}.wrap{padding:14px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top"><div class="brand">JAI HIND CADET 🇮🇳<small>TOP GUN MAVERICKS</small></div><span class="badge">NCC ATTENDANCE & TASKS</span></header>
+<main id="app"></main>
+</div>
+<div id="modal" class="modal hidden"><div class="modalbox"><div class="row" style="justify-content:space-between"><h2 id="modalTitle"></h2><button class="btn ghost" onclick="closeModal()">✕</button></div><div id="modalBody"></div></div></div>
+<div id="toast" class="toast hidden"></div>
+<script>
+const CONFIG={API_URL:'https://script.google.com/macros/s/AKfycbynC-3B2DlKh0j6gIqGF6RbA_p8TwqN-8QjsMfJt7vt-D4zZbHlU9ElP-BZ6S7X5QxLvg/exec'};
+const COLLEGES=['Jai Hind College','K.C. College','B.K. Birla College'];
+const state={events:[],roster:[],tasks:[],certs:[],myAttendance:{},admin:false,adminEmail:'',tab:'dashboard',selectedEvent:null,loading:false,cadetId:'',cadetToken:'',pending:new Set(),busyButton:null};
+const TOKEN_KEY='tg_mavericks_cadet_token';
+const initialToken=new URLSearchParams(location.search).get('cadetToken')||localStorage.getItem(TOKEN_KEY)||'';
+if(initialToken){state.cadetToken=initialToken;localStorage.setItem(TOKEN_KEY,initialToken);}
+const $=s=>document.querySelector(s);
+function toast(x){const e=$('#toast');e.textContent=x;e.classList.remove('hidden');setTimeout(()=>e.classList.add('hidden'),3200)}
+function esc(x){return String(x??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
+function releaseBusy(){
+  const b=state.busyButton;
+  if(!b)return;
+  b.disabled=false;
+  b.classList.remove('busy');
+  if(b.dataset.originalText!==undefined)b.innerHTML=b.dataset.originalText;
+  state.busyButton=null;
+}
+function busyButton(btn,label){
+  if(!btn)return true;
+  if(btn.disabled)return false;
+  state.busyButton=btn;
+  btn.dataset.originalText=btn.innerHTML;
+  btn.disabled=true;
+  btn.classList.add('busy');
+  btn.innerHTML=label||'Processing…';
+  setTimeout(()=>{if(state.busyButton===btn)releaseBusy();},12000);
+  return true;
+}
+function api(action,params={},cb,btn){
+  if(CONFIG.API_URL.includes('PASTE_')){toast('Set CONFIG.API_URL first.');releaseBusy();return}
+  const payload=Object.assign({},params);
+  if(state.cadetToken&&!payload.cadetToken)payload.cadetToken=state.cadetToken;
+  const key=action+'|'+JSON.stringify(payload);
+  if(state.pending.has(key)){releaseBusy();return}
+  state.pending.add(key);
+  if(btn&&state.busyButton!==btn&&!busyButton(btn,'Loading…')){state.pending.delete(key);return}
+  const q=new URLSearchParams(Object.assign({action},payload,{callback:'cb_'+Date.now()+'_'+Math.floor(Math.random()*99999)}));
+  const script=document.createElement('script');
+  const name=q.get('callback');
+  window[name]=(data)=>{
+    state.pending.delete(key);
+    delete window[name];
+    script.remove();
+    releaseBusy();
+    if(data&&data.ok===false)toast(data.error||'Request failed');
+    cb&&cb(data);
+  };
+  script.onerror=()=>{
+    state.pending.delete(key);
+    delete window[name];
+    script.remove();
+    releaseBusy();
+    toast('Network/API request failed. Please try again.');
+    cb&&cb({ok:false,error:'Network/API request failed.'});
+  };
+  script.src=CONFIG.API_URL+'?'+q.toString();
+  document.body.appendChild(script);
+}
+
+function openModal(title,body){$('#modalTitle').textContent=title;$('#modalBody').innerHTML=body;$('#modal').classList.remove('hidden')}
+function closeModal(){$('#modal').classList.add('hidden')}
+function countdown(iso){const t=new Date(iso).getTime();const n=Date.now();const d=t-n;if(d<=0)return 'CLOSED';let s=Math.floor(d/1000),h=Math.floor(s/3600);s%=3600;let m=Math.floor(s/60);s%=60;return String(h).padStart(2,'0')+':'+String(m).padStart(2,'0')+':'+String(s).padStart(2,'0')}
+function fmt(x){return x?new Date(x).toLocaleString('en-IN',{timeZone:'Asia/Kolkata',dateStyle:'medium',timeStyle:'short'}):'—'}
+function eventDateLabel(x){if(!x)return '—';const s=String(x);const d=new Date(s);if(!isNaN(d))return d.toLocaleDateString('en-IN',{timeZone:'Asia/Kolkata',day:'2-digit',month:'long',year:'numeric'});return s}
+function eventTimeLabel(x){if(!x)return '—';const s=String(x);let d;if(/^\d{2}:\d{2}$/.test(s)){const [h,m]=s.split(':').map(Number);d=new Date();d.setHours(h,m,0,0);}else{d=new Date(s);}
+if(isNaN(d))return s;return d.toLocaleTimeString('en-IN',{timeZone:'Asia/Kolkata',hour:'numeric',minute:'2-digit',hour12:true});}
+function deadlineLabel(x){return x?new Date(x).toLocaleString('en-IN',{timeZone:'Asia/Kolkata',day:'2-digit',month:'short',year:'numeric',hour:'numeric',minute:'2-digit',hour12:true}):'—'}
+function activeEvents(){const now=Date.now();return state.events.filter(e=>{if(String(e.Status||'ACTIVE').toUpperCase()==='DELETED')return false;const d=new Date(e.AttendanceDeadline||'').getTime();return isNaN(d)||now<d+60*60*1000;})}
+function renderStart(){return `<section class="hero"><div class="eyebrow">JAI HIND</div><h1>TOP GUN MAVERICKS</h1><p>NCC Attendance & Tasks — a simple cadet experience with a controlled admin system.</p></section><div class="grid"><div class="card choice"><div><h2>CADET</h2><p class="muted">Use your private Cadet link to view events, submit your own attendance, view tasks and open Drive links.</p></div><button class="btn primary" onclick="loadCadet()">Enter Cadet</button></div><div class="card choice"><div><h2>ADMIN</h2><p class="muted">Authorized Google accounts can manage roster, events, attendance, tasks, documents and admins.</p></div><button class="btn" onclick="loadAdmin()">Enter Admin</button></div></div><div class="notice section">This is an independent application and does not represent an official NCC or government application.</div>`}
+function loadCadet(btn){
+  if(!state.cadetToken){
+    openModal('Cadet Access',`<p>This Cadet portal uses a private access link.</p><p class="muted">Open the personal Cadet link provided by Admin.</p>`);
+    return;
+  }
+  api('getPublicData',{},d=>{
+    if(!d.ok)return;
+    if(!d.authorized){
+      localStorage.removeItem(TOKEN_KEY);state.cadetToken='';
+      return toast(d.error||'Invalid Cadet access link.');
+    }
+    state.events=d.events||[];
+    state.roster=d.cadet?[d.cadet]:[];
+    state.tasks=d.tasks||[];
+    state.certs=d.certs||[];
+    state.cadetId=d.cadet&&d.cadet.CadetId||'';
+    state.myAttendance=d.myAttendance||{};
+    renderCadet();
+  },btn);
+}
+function renderCadet(){
+  const ev=activeEvents();
+  const c=state.roster[0]||{};
+  $('#app').innerHTML=`<div class="row"><button class="btn ghost" onclick="location.reload()">← Home</button></div>
+  <section class="profile card"><div class="eyebrow">JAI HIND 🇮🇳</div><h1>${esc(c.FullName||'Cadet')}</h1><div class="rank">${esc(c.Rank||'')}</div><div class="muted">${esc(c.College||'')}</div></section>
+  <section class="hero"><div class="eyebrow">CADET PORTAL</div><h1>Upcoming Events</h1><p>Submit your attendance once. Your personal access link controls your Cadet record.</p></section>
+  <div class="grid">${ev.length?ev.map(e=>eventCard(e)).join(''):'<div class="card empty">No active events right now.</div>'}</div>
+  <section class="section card"><h2>My Tasks & Documents</h2><div id="cadetTasks">Select an event above to view event-specific items.</div></section>`;
+}
+function eventCard(e){
+  const a=state.myAttendance[e.EventId];
+  const closed=new Date(e.AttendanceDeadline).getTime()<=Date.now()||String(e.Finalized).toUpperCase()==='TRUE';
+  let actions='';
+  if(a&&['COMING','NOT COMING'].includes(a.AttendanceStatus)){
+    actions=`<div class="notice"><b>✅ SUBMITTED</b> — ${esc(a.AttendanceStatus)}${a.AttendanceStatus==='NOT COMING'&&a.Reason?' · '+esc(a.Reason):''}</div><div class="event-actions"><button class="btn ${closed?'':'primary'}" ${closed?'disabled':''} onclick="attendance('${esc(e.EventId)}',this)">✏️ EDIT YOUR ATTENDANCE</button><button class="btn" onclick="viewAttendance('${esc(e.EventId)}',this)">👥 VIEW ATTENDANCE LIST</button></div>`;
+  }else if(closed){
+    actions=`<div class="notice"><b>🔒 ATTENDANCE CLOSED</b></div><div class="event-actions"><button class="btn" onclick="viewAttendance('${esc(e.EventId)}',this)">👥 VIEW ATTENDANCE LIST</button></div>`;
+  }else{
+    actions=`<div class="event-actions"><button class="btn primary" onclick="attendance('${esc(e.EventId)}',this)">Attendance</button><button class="btn" onclick="viewAttendance('${esc(e.EventId)}',this)">👥 VIEW ATTENDANCE LIST</button><button class="btn" onclick="showItems('${esc(e.EventId)}',this)">Tasks / Documents</button></div>`;
+  }
+  return `<article class="card"><h2>${esc(e.EventName)}</h2><p>${esc(e.Description||'')}</p><div class="event-meta"><div class="event-meta-box"><div class="deadline-label">Event Date</div><div class="event-date">📅 ${esc(eventDateLabel(e.EventDate))}</div></div><div class="event-meta-box"><div class="deadline-label">Event Time</div><div class="event-time">🕐 ${esc(eventTimeLabel(e.EventTime))}</div></div><div class="event-meta-box"><div class="deadline-label">Attendance Deadline</div><div><span class="countdown" data-deadline="${esc(e.AttendanceDeadline)}">${countdown(e.AttendanceDeadline)}</span><div class="muted small">${esc(deadlineLabel(e.AttendanceDeadline))}</div></div></div></div>${e.EventLink?`<p><a class="btn" target="_blank" rel="noopener" href="${esc(e.EventLink)}">Open Event Link</a></p>`:''}${actions}</article>`;
+}
+function attendance(id,btn){
+  const e=state.events.find(x=>x.EventId===id);if(!e)return;
+  const current=state.myAttendance[id]||{};
+  const closed=new Date(e.AttendanceDeadline).getTime()<=Date.now()||String(e.Finalized).toUpperCase()==='TRUE';
+  if(closed)return toast('Attendance is closed.');
+  openModal('Attendance — '+e.EventName,`<div class="notice"><b>${esc(state.roster[0]?.FullName||'Cadet')}</b><br><span class="muted">${esc(state.roster[0]?.Rank||'')} · ${esc(state.roster[0]?.College||'')}</span></div><div class="row" style="margin-top:12px"><button id="respComing" class="btn success ${current.AttendanceStatus==='COMING'?'primary':''}" onclick="setResp('COMING')">🟢 COMING</button><button id="respNot" class="btn danger ${current.AttendanceStatus==='NOT COMING'?'primary':''}" onclick="setResp('NOT COMING')">🔴 NOT COMING</button></div><div id="reasonWrap" class="field ${current.AttendanceStatus==='NOT COMING'?'':'hidden'}"><label>Reason (required)</label><textarea id="reason" placeholder="Enter your reason">${esc(current.Reason||'')}</textarea></div><button id="submitAttBtn" class="btn primary" onclick="submitAttendance('${esc(id)}',this)" style="margin-top:10px">${current.AttendanceStatus?'Update Attendance':'Submit Attendance'}</button><p class="muted small">You can edit your own response until the attendance deadline.</p>`);
+  window._resp=current.AttendanceStatus||'COMING';
+}
+function setResp(r){window._resp=r;$('#reasonWrap').classList.toggle('hidden',r!=='NOT COMING');document.querySelector('#respComing')?.classList.toggle('primary',r==='COMING');document.querySelector('#respNot')?.classList.toggle('primary',r==='NOT COMING');}
+function submitAttendance(eventId,btn){
+  if(!busyButton(btn,'Submitting…'))return;
+  const reason=window._resp==='NOT COMING'?$('#reason').value.trim():'';
+  if(window._resp==='NOT COMING'&&!reason){releaseBusy();return toast('Reason is required.');}
+  api('submitAttendance',{eventId,status:window._resp,reason},d=>{
+    if(d&&d.ok){
+      state.myAttendance[eventId]={AttendanceStatus:d.status,Reason:reason};
+      closeModal();renderCadet();toast('Attendance submitted successfully.');
+    }
+  },null);
+}
+function viewAttendance(eventId,btn){
+  api('getCadetAttendance',{eventId},d=>{
+    if(!d||!d.ok)return;
+    const rows=d.rows||[];
+    openModal('Attendance List — '+(d.event?.EventName||''),`<div class="grid" style="grid-template-columns:repeat(4,1fr)"><div class="card"><div class="muted">Total</div><div class="stat">${d.counts.total}</div></div><div class="card"><div class="muted">Coming</div><div class="stat">${d.counts.coming}</div></div><div class="card"><div class="muted">Not Coming</div><div class="stat">${d.counts.notComing}</div></div><div class="card"><div class="muted">Pending</div><div class="stat">${d.counts.pending}</div></div></div><div class="tablewrap section"><table class="table"><thead><tr><th>Cadet</th><th>College</th><th>Phone</th><th>Status</th></tr></thead><tbody>${rows.map(x=>`<tr><td><b>${esc(x.Rank||'')} ${esc(x.FullName)}</b></td><td>${esc(x.College||'')}</td><td>${esc(x.PhoneNumber||'—')}</td><td><span class="status ${x.AttendanceStatus==='COMING'?'coming':x.AttendanceStatus==='NOT COMING'?'notcoming':'noresponse'}">${esc(x.AttendanceStatus)}</span></td></tr>`).join('')}</tbody></table></div>`);
+  },btn);
+}
+function showItems(eventId,btn){const tasks=state.tasks.filter(t=>t.EventId===eventId),certs=state.certs.filter(t=>t.EventId===eventId);openModal('Tasks & Documents',`<h3>Tasks</h3>${tasks.length?tasks.map(t=>`<div class="card"><b>${esc(t.TaskTitle)}</b><p>${esc(t.Description||'')}</p><p>Deadline: ${esc(t.Deadline||'—')} · ${esc(t.Status||'OPEN')}</p>${t.DriveLink?`<a class="btn" target="_blank" rel="noopener" href="${esc(t.DriveLink)}">Open Google Drive</a>`:''}</div>`).join(''):'<p class="muted">No tasks.</p>'}<h3>Certificate / Document</h3>${certs.length?certs.map(t=>`<div class="card"><b>${esc(t.Title)}</b><p>${esc(t.Description||'')}</p><p>Deadline: ${esc(t.Deadline||'—')} · ${esc(t.Status||'OPEN')}</p>${t.DriveLink?`<a class="btn" target="_blank" rel="noopener" href="${esc(t.DriveLink)}">Open Google Drive</a>`:''}</div>`).join(''):'<p class="muted">No document requirements.</p>'}`)}
+
+function loadAdmin(){api('adminBootstrap',{},d=>{if(!d.ok)return;if(!d.authorized){openModal('Admin authorization',`<p>${esc(d.message||'Your Google account is not authorized.')}</p><p class="muted">The Apps Script deployment must be configured to identify the accessing Google account. See the setup guide.</p>`);return}state.admin=true;state.adminEmail=d.email;state.events=d.events||[];state.roster=d.roster||[];state.tasks=d.tasks||[];state.certs=d.certs||[];renderAdmin()})}
+function renderAdmin(){const tabs=[['dashboard','Dashboard'],['roster','Roster'],['events','Events'],['attendance','Attendance'],['tasks','Tasks'],['certs','Documents'],['admins','Admins'],['audit','Audit']];$('#app').innerHTML=`<div class="row"><button class="btn ghost" onclick="location.reload()">← Home</button><span class="badge">${esc(state.adminEmail)}</span></div><section class="hero"><div class="eyebrow">ADMIN PANEL</div><h1>Control Center</h1><p>All protected changes are validated by Apps Script.</p></section><div class="tabs">${tabs.map(x=>`<button class="btn ${state.tab===x[0]?'active':''}" onclick="adminTab('${x[0]}')">${x[1]}</button>`).join('')}</div><div id="adminContent" class="section"></div>`;adminTab(state.tab)}
+function adminTab(t){state.tab=t;const f={dashboard:adminDashboard,roster:adminRoster,events:adminEvents,attendance:adminAttendance,tasks:adminTasks,certs:adminCerts,admins:adminAdmins,audit:adminAudit}[t];if(f)f()}
+function adminDashboard(){api('adminDashboard',{},d=>{if(!d.ok)return;$('#adminContent').innerHTML=`<div class="grid">${[['Active Cadets',d.activeCadets],['Events',d.totalEvents],['Coming',d.coming],['Not Coming',d.notComing],['No Response',d.noResponse],['Open Tasks',d.openTasks],['Document Deadlines',d.openCerts]].map(x=>`<div class="card"><div class="muted">${x[0]}</div><div class="stat">${x[1]}</div></div>`).join('')}</div><div class="card section"><h2>Upcoming Events</h2>${activeEvents().map(e=>`<p><b>${esc(e.EventName)}</b> · ${esc(eventDateLabel(e.EventDate))} · closes ${esc(deadlineLabel(e.AttendanceDeadline))}</p>`).join('')||'<p class="muted">No events.</p>'}</div>`})}
+function adminRoster(){api('getRoster',{},d=>{state.roster=d.roster||[];$('#adminContent').innerHTML=`<div class="row"><button class="btn primary" onclick="cadetForm()">+ Add Cadet</button><input id="rosterSearch" class="btn" placeholder="Search name / ID / college" oninput="filterRoster()"></div><div id="rosterTable" class="tablewrap section">${rosterTable(d.roster||[])}</div>`})}
+function rosterTable(a){return `<table class="table"><thead><tr><th>Sr.</th><th>ID</th><th>Name</th><th>Rank</th><th>College</th><th>Phone</th><th>Active</th><th></th></tr></thead><tbody>${a.map(x=>`<tr><td>${esc(x.SrNo)}</td><td>${esc(x.CadetId)}</td><td>${esc(x.FullName)}</td><td>${esc(x.Rank)}</td><td>${esc(x.College)}</td><td>${esc(x.PhoneNumber||'—')}</td><td>${String(x.Active).toUpperCase()==='TRUE'?'YES':'NO'}</td><td><button class="btn" onclick='cadetForm(${JSON.stringify(x)})'>Edit</button> <button class="btn" onclick="copyCadetLink('${esc(x.CadetId)}')">Access Link</button></td></tr>`).join('')}</tbody></table>`}
+function copyCadetLink(cadetId){
+  const base=(location.protocol==='file:')?'':location.href.split('?')[0];
+  api('getCadetAccess',{cadetId,siteUrl:base},d=>{
+    if(!d.ok)return;
+    if(!d.url || d.url.charAt(0)==='?'){
+      openModal('Cadet Access Link',`<p>Website URL is not available yet because this is a local file.</p><p>After deploying the website, use this button again to get the complete private Cadet link.</p>`);
+      return;
+    }
+    navigator.clipboard.writeText(d.url)
+      .then(()=>toast('Private Cadet access link copied.'))
+      .catch(()=>openModal('Cadet Access Link',`<p>Copy this private link and send it only to the Cadet:</p><textarea style="width:100%;min-height:90px">${esc(d.url)}</textarea>`));
+  });
+}
+function filterRoster(){const q=$('#rosterSearch').value.toLowerCase();const source=state.roster||[];$('#rosterTable').innerHTML=rosterTable(source.filter(x=>Object.values(x).join(' ').toLowerCase().includes(q)))}
+function cadetForm(x={}){openModal(x.CadetId?'Edit Cadet':'Add Cadet',`<div class="split"><div class="field"><label>Cadet ID</label><input id="fCadetId" value="${esc(x.CadetId||'')}"></div><div class="field"><label>Full Name</label><input id="fName" value="${esc(x.FullName||'')}"></div></div><div class="split"><div class="field"><label>Rank/Prefix</label><input id="fRank" value="${esc(x.Rank||'')}"></div><div class="field"><label>College</label><select id="fCollege">${COLLEGES.map(c=>`<option ${x.College===c?'selected':''}>${c}</option>`).join('')}</select></div></div><div class="field"><label>Phone Number</label><input id="fPhone" type="tel" inputmode="numeric" value="${esc(x.PhoneNumber||'')}" placeholder="10-digit mobile number"></div><div class="field"><label>Active</label><select id="fActive"><option value="TRUE" ${String(x.Active).toUpperCase()!=='FALSE'?'selected':''}>TRUE</option><option value="FALSE" ${String(x.Active).toUpperCase()==='FALSE'?'selected':''}>FALSE</option></select></div><button class="btn primary" onclick="saveCadet('${esc(x.CadetId||'')}')">Save</button>`)}
+function saveCadet(oldId){const p={oldCadetId:oldId,cadetId:$('#fCadetId').value.trim(),fullName:$('#fName').value.trim(),rank:$('#fRank').value.trim(),college:$('#fCollege').value,phoneNumber:$('#fPhone').value.trim(),active:$('#fActive').value};if(!p.cadetId||!p.fullName)return toast('Cadet ID and name are required.');api(oldId?'editCadet':'addCadet',p,d=>{if(d&&d.ok){closeModal();adminRoster();toast('Roster saved.')}})}
+function adminEvents(){api('getEvents',{},d=>{$('#adminContent').innerHTML=`<div class="row"><button class="btn primary" onclick="eventForm()">+ Create Event</button><button class="btn" onclick="duplicateEventPrompt()">Create From Previous Event</button></div><div class="grid section">${(d.events||[]).map(e=>`<div class="card"><h3>${esc(e.EventName)}</h3><p>${esc(e.Description||'')}</p><div class="event-meta"><div class="event-meta-box"><div class="deadline-label">Event Date</div><div class="event-date">📅 ${esc(eventDateLabel(e.EventDate))}</div></div><div class="event-meta-box"><div class="deadline-label">Event Time</div><div class="event-time">🕐 ${esc(eventTimeLabel(e.EventTime))}</div></div></div><p><span class="deadline-label">Attendance closes</span><br><span class="countdown" data-deadline="${esc(e.AttendanceDeadline)}">${countdown(e.AttendanceDeadline)}</span><br><span class="muted small">${esc(deadlineLabel(e.AttendanceDeadline))}</span></p><div class="row"><button class="btn" onclick='eventForm(${JSON.stringify(e)})'>✏️ Edit</button><button class="btn" onclick="finalizeEvent('${esc(e.EventId)}',${e.Finalized?'false':'true'})">${e.Finalized?'Unlock':'Finalize'}</button><button class="btn danger" onclick="deleteEvent('${esc(e.EventId)}')">🗑️ Delete</button></div></div>`).join('')||'<div class="card empty">No events.</div>'}</div>`})}
+function eventForm(x={}){openModal(x.EventId?'Edit Event':'Create Event',`<div class="field"><label>Event Name</label><input id="eName" value="${esc(x.EventName||'')}"></div><div class="field"><label>Description</label><textarea id="eDesc">${esc(x.Description||'')}</textarea></div><div class="split"><div class="field"><label>Event Date</label><input id="eDate" type="date" value="${esc(String(x.EventDate||'').slice(0,10))}"></div><div class="field"><label>Event Time</label><input id="eTime" type="time" value="${esc(String(x.EventTime||'').slice(0,5))}"></div></div><div class="field"><label>Attendance Deadline (IST)</label><input id="eDeadline" type="datetime-local" value="${esc((x.AttendanceDeadline||'').slice(0,16))}"></div><div class="split"><div class="field"><label>Event Link</label><input id="eLink" type="url" value="${esc(x.EventLink||'')}"></div><div class="field"><label>Drive Link</label><input id="eDrive" type="url" value="${esc(x.DriveLink||'')}"></div></div><button class="btn primary" onclick="saveEvent('${esc(x.EventId||'')}')">Save Event</button>`)}
+function saveEvent(id){const p={eventId:id,eventName:$('#eName').value.trim(),description:$('#eDesc').value,eventDate:$('#eDate').value,eventTime:$('#eTime').value,attendanceDeadline:$('#eDeadline').value,eventLink:$('#eLink').value.trim(),driveLink:$('#eDrive').value.trim()};if(!p.eventName||!p.eventDate||!p.attendanceDeadline)return toast('Name, date and deadline are required.');api(id?'editEvent':'createEvent',p,d=>{if(d&&d.ok){closeModal();adminEvents();toast('Event saved.')}})}
+function deleteEvent(id){if(!confirm('Delete this event? The event will be hidden from cadets, but existing attendance/history will remain safe.'))return;api('deleteEvent',{eventId:id},d=>{if(d&&d.ok){adminEvents();toast('Event deleted. Existing attendance/history was kept.')}})}
+function finalizeEvent(id,lock){if(!confirm(lock==='true'?'Finalize this event? Attendance and normal editing will be locked.':'Unlock this finalized event?'))return;api(lock==='true'?'finalizeEvent':'unlockEvent',{eventId:id},d=>{if(d&&d.ok)adminEvents()})}
+function duplicateEventPrompt(){api('getEvents',{},d=>{const opts=(d.events||[]).map(e=>`<option value="${esc(e.EventId)}">${esc(e.EventName)} — ${esc(e.EventDate)}</option>`).join('');openModal('Create From Previous Event',`<div class="field"><label>Previous event</label><select id="dup">${opts}</select></div><button class="btn primary" onclick="duplicateEvent()">Create New Event</button>`)})}
+function duplicateEvent(){api('duplicateEvent',{sourceEventId:$('#dup').value},d=>{if(d&&d.ok){closeModal();adminEvents();toast('New event created. Attendance was not copied.')}})}
+function adminAttendance(){api('getAllAttendance',{},d=>{$('#adminContent').innerHTML=`<div class="card"><h2>Attendance</h2><div class="tablewrap"><table class="table"><thead><tr><th>Event</th><th>Cadet</th><th>College</th><th>Status</th><th>Reason</th><th>Submitted</th></tr></thead><tbody>${(d.rows||[]).map(x=>`<tr><td>${esc(x.EventName)}</td><td>${esc(x.CadetName)}</td><td>${esc(x.College)}</td><td><span class="status ${x.AttendanceStatus==='COMING'?'coming':x.AttendanceStatus==='NOT COMING'?'notcoming':'noresponse'}">${esc(x.AttendanceStatus)}</span></td><td>${esc(x.Reason||'')}</td><td>${esc(fmt(x.SubmissionTime))}</td></tr>`).join('')}</tbody></table></div></div><div class="card section"><h2>WhatsApp List</h2><div class="field"><label>Event</label><select id="waEvent">${activeEvents().map(e=>`<option value="${esc(e.EventId)}">${esc(e.EventName)} — ${esc(e.EventDate)}</option>`).join('')}</select></div><div class="row"><button class="btn" onclick="previewWA()">Preview</button><button class="btn primary" onclick="copyWA()">Copy WhatsApp List</button></div></div>`})}
+function waText(eventId){return new Promise(resolve=>api('whatsapp',{eventId},d=>resolve(d.text||'')))}
+async function previewWA(){const t=await waText($('#waEvent').value);openModal('WhatsApp Preview',`<textarea style="width:100%;min-height:430px;background:#06111b;color:#fff;border:1px solid var(--line);border-radius:10px;padding:12px">${esc(t)}</textarea>`)}
+async function copyWA(){const t=await waText($('#waEvent').value);try{await navigator.clipboard.writeText(t);toast('WhatsApp list copied.')}catch(e){openModal('Copy failed',`<p>Clipboard permission failed. Select and copy the preview manually.</p><textarea style="width:100%;min-height:430px">${esc(t)}</textarea>`)}}
+function adminTasks(){api('getTasksAdmin',{},d=>{$('#adminContent').innerHTML=`<div class="row"><button class="btn primary" onclick="taskForm()">+ Create Task</button></div><div class="grid section">${(d.tasks||[]).map(t=>`<div class="card"><h3>${esc(t.TaskTitle)}</h3><p>${esc(t.Description||'')}</p><p>${esc(t.Status||'OPEN')} · deadline ${esc(t.Deadline||'—')}</p><button class="btn" onclick='taskForm(${JSON.stringify(t)})'>Edit</button></div>`).join('')||'<div class="card empty">No tasks.</div>'}</div>`})}
+function taskForm(x={}){openModal(x.TaskId?'Edit Task':'Create Task',`<div class="field"><label>Event</label><select id="tEvent">${activeEvents().map(e=>`<option value="${esc(e.EventId)}" ${x.EventId===e.EventId?'selected':''}>${esc(e.EventName)}</option>`).join('')}</select></div><div class="field"><label>Title</label><input id="tTitle" value="${esc(x.TaskTitle||'')}"></div><div class="field"><label>Description</label><textarea id="tDesc">${esc(x.Description||'')}</textarea></div><div class="field"><label>Assigned Cadet/Group</label><input id="tAssign" value="${esc(x.AssignedCadetGroup||'')}"></div><div class="split"><div class="field"><label>Drive Link</label><input id="tDrive" value="${esc(x.DriveLink||'')}"></div><div class="field"><label>Deadline</label><input id="tDeadline" type="datetime-local" value="${esc((x.Deadline||'').slice(0,16))}"></div></div><div class="field"><label>Status</label><select id="tStatus">${['OPEN','DEADLINE APPROACHING','OVERDUE','COMPLETED','CLOSED'].map(s=>`<option ${x.Status===s?'selected':''}>${s}</option>`).join('')}</select></div><button class="btn primary" onclick="saveTask('${esc(x.TaskId||'')}')">Save</button>`)}
+function saveTask(id){api(id?'editTask':'createTask',{taskId:id,eventId:$('#tEvent').value,taskTitle:$('#tTitle').value,description:$('#tDesc').value,assigned:$('#tAssign').value,driveLink:$('#tDrive').value,deadline:$('#tDeadline').value,status:$('#tStatus').value},d=>{if(d&&d.ok){closeModal();adminTasks()}})}
+function adminCerts(){api('getCertsAdmin',{},d=>{$('#adminContent').innerHTML=`<div class="row"><button class="btn primary" onclick="certForm()">+ Create Requirement</button></div><div class="grid section">${(d.certs||[]).map(t=>`<div class="card"><h3>${esc(t.Title)}</h3><p>${esc(t.Description||'')}</p><p>${esc(t.Status||'OPEN')} · deadline ${esc(t.Deadline||'—')}</p><button class="btn" onclick='certForm(${JSON.stringify(t)})'>Edit</button></div>`).join('')||'<div class="card empty">No requirements.</div>'}</div>`})}
+function certForm(x={}){openModal(x.SubmissionId?'Edit Requirement':'Create Requirement',`<div class="field"><label>Event</label><select id="cEvent">${activeEvents().map(e=>`<option value="${esc(e.EventId)}" ${x.EventId===e.EventId?'selected':''}>${esc(e.EventName)}</option>`).join('')}</select></div><div class="field"><label>Title</label><input id="cTitle" value="${esc(x.Title||'')}"></div><div class="field"><label>Description</label><textarea id="cDesc">${esc(x.Description||'')}</textarea></div><div class="field"><label>Google Drive Link</label><input id="cDrive" value="${esc(x.DriveLink||'')}"></div><div class="split"><div class="field"><label>Assigned Cadet/Group</label><input id="cAssign" value="${esc(x.AssignedCadetGroup||'')}"></div><div class="field"><label>Deadline</label><input id="cDeadline" type="datetime-local" value="${esc((x.Deadline||'').slice(0,16))}"></div></div><button class="btn primary" onclick="saveCert('${esc(x.SubmissionId||'')}')">Save</button>`)}
+function saveCert(id){api(id?'editCert':'createCert',{submissionId:id,eventId:$('#cEvent').value,title:$('#cTitle').value,description:$('#cDesc').value,driveLink:$('#cDrive').value,assigned:$('#cAssign').value,deadline:$('#cDeadline').value,status:'OPEN'},d=>{if(d&&d.ok){closeModal();adminCerts()}})}
+function adminAdmins(){api('getAdmins',{},d=>{$('#adminContent').innerHTML=`<div class="row"><button class="btn primary" onclick="adminForm()">+ Add Admin</button></div><div class="tablewrap section"><table class="table"><thead><tr><th>Name</th><th>Email</th><th>Role</th><th>Active</th><th></th></tr></thead><tbody>${(d.admins||[]).map(a=>`<tr><td>${esc(a.AdminName)}</td><td>${esc(a.GoogleAccount)}</td><td>${esc(a.Role)}</td><td>${esc(a.Active)}</td><td><button class="btn" onclick='adminForm(${JSON.stringify(a)})'>Edit</button></td></tr>`).join('')}</tbody></table></div>`})}
+function adminForm(x={}){openModal(x.AdminId?'Edit Admin':'Add Admin',`<div class="field"><label>Name</label><input id="aName" value="${esc(x.AdminName||'')}"></div><div class="field"><label>Google Account / Email</label><input id="aEmail" type="email" value="${esc(x.GoogleAccount||'')}"></div><div class="field"><label>Active</label><select id="aActive"><option value="TRUE">TRUE</option><option value="FALSE" ${String(x.Active).toUpperCase()==='FALSE'?'selected':''}>FALSE</option></select></div><button class="btn primary" onclick="saveAdmin('${esc(x.AdminId||'')}')">Save</button>`)}
+function saveAdmin(id){api(id?'editAdmin':'addAdmin',{adminId:id,adminName:$('#aName').value,googleAccount:$('#aEmail').value,active:$('#aActive').value},d=>{if(d&&d.ok){closeModal();adminAdmins()}})}
+function adminAudit(){api('getAudit',{},d=>{$('#adminContent').innerHTML=`<div class="tablewrap"><table class="table"><thead><tr><th>Date</th><th>Admin</th><th>Action</th><th>Target</th><th>Previous</th><th>New</th></tr></thead><tbody>${(d.rows||[]).map(x=>`<tr><td>${esc(fmt(x.DateTime))}</td><td>${esc(x.AdminAccount)}</td><td>${esc(x.Action)}</td><td>${esc(x.Target)}</td><td>${esc(x.PreviousValue)}</td><td>${esc(x.NewValue)}</td></tr>`).join('')}</tbody></table></div>`})}
+document.addEventListener('click',function(ev){
+  const b=ev.target.closest('button.btn');
+  if(!b||b.disabled||b.classList.contains('ghost')||b.classList.contains('busy')||b.id==='respComing'||b.id==='respNot'||b.id==='submitAttBtn')return;
+  if(b.onclick&&String(b.onclick).includes('submitAttendance'))return;
+  busyButton(b,'Loading…');
+});
+setInterval(()=>document.querySelectorAll('[data-deadline]').forEach(e=>e.textContent=countdown(e.dataset.deadline)),1000);
+$('#app').innerHTML=renderStart();
+</script>
+</body></html>
