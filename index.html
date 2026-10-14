@@ -86,27 +86,42 @@ function eventDateLabel(x){if(!x)return '—';const s=String(x);const d=new Date
 function eventTimeLabel(x){if(!x)return '—';const s=String(x);let d;if(/^\d{2}:\d{2}$/.test(s)){const [h,m]=s.split(':').map(Number);d=new Date();d.setHours(h,m,0,0);}else{d=new Date(s);}
 if(isNaN(d))return s;return d.toLocaleTimeString('en-IN',{timeZone:'Asia/Kolkata',hour:'numeric',minute:'2-digit',hour12:true});}
 function deadlineLabel(x){return x?new Date(x).toLocaleString('en-IN',{timeZone:'Asia/Kolkata',day:'2-digit',month:'short',year:'numeric',hour:'numeric',minute:'2-digit',hour12:true}):'—'}
-function activeEvents(){const now=Date.now();return state.events.filter(e=>{if(String(e.Status||'ACTIVE').toUpperCase()==='DELETED')return false;const d=new Date(e.AttendanceDeadline||'').getTime();return isNaN(d)||now<d+60*60*1000;})}
-function renderStart(){return `<section class="hero"><div class="eyebrow">JAI HIND</div><h1>TOP GUN MAVERICKS</h1><p>NCC Attendance & Tasks — a simple cadet experience with a controlled admin system.</p></section><div class="grid"><div class="card choice"><div><h2>CADET</h2><p class="muted">Use your private Cadet link to view events, submit your own attendance, view tasks and open Drive links.</p></div><button class="btn primary" onclick="loadCadet()">Enter Cadet</button></div><div class="card choice"><div><h2>ADMIN</h2><p class="muted">Authorized Google accounts can manage roster, events, attendance, tasks, documents and admins.</p></div><button class="btn" onclick="loadAdmin()">Enter Admin</button></div></div><div class="notice section">This is an independent application and does not represent an official NCC or government application.</div>`}
+function activeEvents(){const now=Date.now();const retention=state.admin?26:2;return state.events.filter(e=>{if(String(e.Status||'ACTIVE').toUpperCase()==='DELETED')return false;const d=new Date(e.AttendanceDeadline||'').getTime();return isNaN(d)||now<d+retention*60*60*1000;})}
+function renderStart(){return `<section class="hero"><div class="eyebrow">JAI HIND</div><h1>TOP GUN MAVERICKS</h1><p>NCC Attendance & Tasks — a simple cadet experience with a controlled admin system.</p></section><div class="grid"><div class="card choice"><div><h2>CADET</h2><p class="muted">Use your private Cadet link to view events, submit your own attendance, view tasks and open Drive links.</p></div><button class="btn primary" onclick="loadCadet(this)">Enter as Cadet</button></div><div class="card choice"><div><h2>ADMIN</h2><p class="muted">Authorized Google accounts can manage roster, events, attendance, tasks, documents and admins.</p></div><button class="btn" onclick="loadAdmin()">Enter Admin</button></div></div><div class="notice section">This is an independent application and does not represent an official NCC or government application.</div>`}
 function loadCadet(btn){
   if(!state.cadetToken){
     openModal('Cadet Access',`<p>This Cadet portal uses a private access link.</p><p class="muted">Open the personal Cadet link provided by Admin.</p>`);
     return;
   }
   api('getPublicData',{},d=>{
-    if(!d.ok)return;
+    if(!d||!d.ok)return;
     if(!d.authorized){
-      localStorage.removeItem(TOKEN_KEY);state.cadetToken='';
-      return toast(d.error||'Invalid Cadet access link.');
+      // Do not discard the token automatically; a temporary API/config issue should not destroy the local link.
+      return toast(d.error||'Invalid Cadet access link. Please check your personal link.');
     }
-    state.events=d.events||[];
-    state.roster=d.cadet?[d.cadet]:[];
-    state.tasks=d.tasks||[];
-    state.certs=d.certs||[];
-    state.cadetId=d.cadet&&d.cadet.CadetId||'';
-    state.myAttendance=d.myAttendance||{};
-    renderCadet();
+    const c=d.cadet||{};
+    const fullName=[c.Rank,c.FullName].filter(Boolean).join(' ');
+    openModal('Jai Hind, Cadet!',`<div class="notice"><h3 style="margin:0 0 8px">Jai Hind, Cadet!</h3><p>Are you <b>${esc(fullName||'this cadet')}</b>?</p><p class="muted">Please confirm your identity before entering the Cadet Portal.</p></div><div class="row" style="margin-top:14px"><button class="btn primary" onclick="confirmCadetIdentity(true)">Yes, I am</button><button class="btn danger" onclick="confirmCadetIdentity(false)">No, I’m not</button></div>`);
+    window._pendingCadetData=d;
   },btn);
+}
+function confirmCadetIdentity(isCadet){
+  if(!isCadet){
+    openModal('ACCESS ALERT',`<div style="border:1px solid #ff647c;background:#351827;border-radius:14px;padding:16px;color:#fff"><h3 style="color:#ff647c;margin-top:0">⚠️ ACCESS ALERT</h3><p>Contact <b>FLT CDT Tanmay Patil</b> immediately to get your access link.</p><a class="btn" style="display:inline-flex;align-items:center;gap:8px;background:#128c7e;border-color:#128c7e;color:#fff;text-decoration:none" target="_blank" rel="noopener" href="https://wa.me/918108881324">☏ Tanmay Patil — WhatsApp</a></div>`);
+    window._pendingCadetData=null;
+    return;
+  }
+  const d=window._pendingCadetData;
+  if(!d||!d.cadet){closeModal();return toast('Please open your personal Cadet access link again.');}
+  window._pendingCadetData=null;
+  state.events=d.events||[];
+  state.roster=[d.cadet];
+  state.tasks=d.tasks||[];
+  state.certs=d.certs||[];
+  state.cadetId=d.cadet.CadetId||'';
+  state.myAttendance=d.myAttendance||{};
+  closeModal();
+  renderCadet();
 }
 function renderCadet(){
   const ev=activeEvents();
